@@ -1,4 +1,4 @@
-#C Project
+#C_Project
 
     	We are planning to develop an application that aims to
 	to manage the C.

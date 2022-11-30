@@ -18,7 +18,7 @@ on_button_Ajouter_clicked              (GtkButton       *objet,
 {
 GtkWidget *entry_cinU,*entry_nomU,*entry_prenomU,*jour,*mois,*annee,*radiobutton_hommeU,*radiobutton_femmeU,*type,*numbv,*validation;
 utilisateur user;
-
+GtkWidget*output ;
 entry_cinU = lookup_widget (objet,"entry_cinU" );
 entry_nomU =lookup_widget (objet,"entry_nomU" );
 entry_prenomU =lookup_widget (objet,"entry_prenomU" );
@@ -29,7 +29,7 @@ type = lookup_widget (objet,"type" );
 numbv = lookup_widget (objet,"entry_bvU" );
 validation=lookup_widget (objet,"checkbutton13" );
 
-
+output = lookup_widget(objet, "verif") ;
 //-------------------------------------------------------------
 
 user.cin=atoi(gtk_entry_get_text(GTK_ENTRY(entry_cinU)));
@@ -41,9 +41,10 @@ user.DateNaissance.annee=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(annee)
 
 strcpy(user.type,gtk_combo_box_get_active_text(GTK_COMBO_BOX(type)));
 user.numBV=atoi(gtk_entry_get_text(GTK_ENTRY(numbv)));
-if (test2==1){
+if ((test2==1)&&(Verif_CIN(user.cin))&&(verif_STRING(user.nom))&&(verif_STRING(user.prenom))){
 int x=ajouterU("utilisateur.txt",user,test);
 }
+else gtk_label_set_text(GTK_LABEL(output),"--/ Verifier votre données /--");
 
 }
 
@@ -73,7 +74,7 @@ on_button_gestionBV_clicked            (GtkButton       *button,
 
 
 void
-on_button_ModifierU_clicked            (GtkButton       *button,
+on_button_ModifierU_clicked            (GtkButton       *objet,
                                         gpointer         user_data)
 {
 
@@ -298,5 +299,21 @@ user.vote=vote;
 afficherU(treeview);
 
 }
+}
+
+
+void
+on_ModiferUser_clicked                 (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_ajout;
+GtkWidget *fenetre_afficher;
+GtkWidget *treeview;
+
+fenetre_ajout = lookup_widget(objet,"AjouterUtilisateur");
+
+gtk_widget_hide(fenetre_ajout);
+fenetre_afficher=lookup_widget(objet,"GestionU");
+fenetre_afficher=create_GestionU();
 }
 

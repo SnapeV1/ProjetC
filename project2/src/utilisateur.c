@@ -19,7 +19,6 @@ enum
 };
 
 
-
 int ajouterU(char *filename,utilisateur u,int test){
     FILE *f=fopen(filename,"a");
     u.vote=-1;
@@ -144,6 +143,31 @@ utilisateur user;
 
 
 
+
+
+// ------------------------------------------------------------verif functions -----------------------------------------------------
+	//verif CIN
+int Verif_CIN(int cin)
+{
+char ch[50];
+
+sprintf(ch,"%d",cin);
+if (strlen(ch)==8)
+return 1;
+else return 0;
+}
+
+	//verif strings
+int verif_STRING(char ch[50]){
+int i;
+int test=1;
+for(i=0;i<strlen(ch);i++){
+if((ch[i]=='0')||(ch[i]=='1')||(ch[i]=='2')||(ch[i]=='3')||(ch[i]=='4')||(ch[i]=='5')||(ch[i]=='6')||(ch[i]=='7')||(ch[i]=='8')||(ch[i]=='9'))
+test=0;
+
+}
+return test;
+}
 
 
 

@@ -59,12 +59,13 @@ main (int argc, char *argv[])
  /*
  Espace_d_administrateur = create_Espace_d_administrateur ();
   gtk_widget_show (Espace_d_administrateur);
-*/
+
   GestionU = create_GestionU ();
   gtk_widget_show (GestionU);
-/*
+*/
   ModifierU = create_ModifierU ();
   gtk_widget_show (ModifierU);
+ /*
   gestiondebureaudevote = create_gestiondebureaudevote ();
   gtk_widget_show (gestiondebureaudevote);
   Ajoutbv = create_Ajoutbv ();

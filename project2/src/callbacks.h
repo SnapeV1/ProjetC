@@ -18,7 +18,7 @@ on_button_gestionBV_clicked            (GtkButton       *button,
                                         gpointer         user_data);
 
 void
-on_button_ModifierU_clicked            (GtkButton       *button,
+on_button_ModifierU_clicked            (GtkButton       *objet,
                                         gpointer         user_data);
 
 void
@@ -107,4 +107,8 @@ void
 on_affichageTree_row_activated         (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_ModiferUser_clicked                 (GtkButton       *objet,
                                         gpointer         user_data);

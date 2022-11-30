@@ -19,5 +19,5 @@ GtkWidget* create_window1 (void);
 GtkWidget* create_SUPPRIMER (void);
 GtkWidget* create_MODIFIER (void);
 GtkWidget* create_ObservateurSupprimer (void);
-GtkWidget* create_SupprimerU (void);
 GtkWidget* create_Modification_observateur (void);
+GtkWidget* create_ModifierU (void);

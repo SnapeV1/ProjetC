@@ -1,7 +1,7 @@
-# a C Project
+#C Project
 
     	We are planning to develop an application that aims to
-	to manage the municipal elections.
+	to manage the C.
 			
 						
 		#Objective

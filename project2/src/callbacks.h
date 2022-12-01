@@ -124,3 +124,11 @@ on_refresh_clicked                     (GtkButton       *objet,
 void
 on_button_rechercher_clicked           (GtkButton       *objet,
                                         gpointer         user_data);
+
+void
+on_button_ModifierU_clicked            (GtkButton       *objet,
+                                        gpointer         user_data);
+
+void
+on_Modifier_Search_clicked             (GtkButton       *objet,
+                                        gpointer         user_data);

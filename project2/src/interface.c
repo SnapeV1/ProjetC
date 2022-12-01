@@ -363,11 +363,6 @@ create_GestionU (void)
   GtkWidget *hbox6;
   GtkWidget *image6;
   GtkWidget *label62;
-  GtkWidget *button_ModifierU;
-  GtkWidget *alignment7;
-  GtkWidget *hbox7;
-  GtkWidget *image7;
-  GtkWidget *label63;
   GtkWidget *affichageTree;
   GtkWidget *button_SupprimerU;
   GtkWidget *alignment8;
@@ -381,6 +376,11 @@ create_GestionU (void)
   GtkWidget *hbox9;
   GtkWidget *image9;
   GtkWidget *label65;
+  GtkWidget *button_ModifierU;
+  GtkWidget *alignment7;
+  GtkWidget *hbox7;
+  GtkWidget *image7;
+  GtkWidget *label63;
 
   GestionU = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (GestionU), _("Gestion Utilisateur"));
@@ -420,27 +420,6 @@ create_GestionU (void)
   label62 = gtk_label_new_with_mnemonic (_("AJOUTER"));
   gtk_widget_show (label62);
   gtk_box_pack_start (GTK_BOX (hbox6), label62, FALSE, FALSE, 0);
-
-  button_ModifierU = gtk_button_new ();
-  gtk_widget_show (button_ModifierU);
-  gtk_fixed_put (GTK_FIXED (fixed3), button_ModifierU, 424, 448);
-  gtk_widget_set_size_request (button_ModifierU, 144, 48);
-
-  alignment7 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment7);
-  gtk_container_add (GTK_CONTAINER (button_ModifierU), alignment7);
-
-  hbox7 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox7);
-  gtk_container_add (GTK_CONTAINER (alignment7), hbox7);
-
-  image7 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image7);
-  gtk_box_pack_start (GTK_BOX (hbox7), image7, FALSE, FALSE, 0);
-
-  label63 = gtk_label_new_with_mnemonic (_("Modifier"));
-  gtk_widget_show (label63);
-  gtk_box_pack_start (GTK_BOX (hbox7), label63, FALSE, FALSE, 0);
 
   affichageTree = gtk_tree_view_new ();
   gtk_widget_show (affichageTree);
@@ -499,6 +478,27 @@ create_GestionU (void)
   gtk_widget_show (label65);
   gtk_box_pack_start (GTK_BOX (hbox9), label65, FALSE, FALSE, 0);
 
+  button_ModifierU = gtk_button_new ();
+  gtk_widget_show (button_ModifierU);
+  gtk_fixed_put (GTK_FIXED (fixed3), button_ModifierU, 424, 448);
+  gtk_widget_set_size_request (button_ModifierU, 144, 48);
+
+  alignment7 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment7);
+  gtk_container_add (GTK_CONTAINER (button_ModifierU), alignment7);
+
+  hbox7 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox7);
+  gtk_container_add (GTK_CONTAINER (alignment7), hbox7);
+
+  image7 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image7);
+  gtk_box_pack_start (GTK_BOX (hbox7), image7, FALSE, FALSE, 0);
+
+  label63 = gtk_label_new_with_mnemonic (_("Modifier"));
+  gtk_widget_show (label63);
+  gtk_box_pack_start (GTK_BOX (hbox7), label63, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) affichageTree, "row_activated",
                     G_CALLBACK (on_affichageTree_row_activated),
                     NULL);
@@ -511,6 +511,9 @@ create_GestionU (void)
   g_signal_connect ((gpointer) button_rechercher, "clicked",
                     G_CALLBACK (on_button_rechercher_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_ModifierU, "clicked",
+                    G_CALLBACK (on_button_ModifierU_clicked),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (GestionU, GestionU, "GestionU");
@@ -522,11 +525,6 @@ create_GestionU (void)
   GLADE_HOOKUP_OBJECT (GestionU, hbox6, "hbox6");
   GLADE_HOOKUP_OBJECT (GestionU, image6, "image6");
   GLADE_HOOKUP_OBJECT (GestionU, label62, "label62");
-  GLADE_HOOKUP_OBJECT (GestionU, button_ModifierU, "button_ModifierU");
-  GLADE_HOOKUP_OBJECT (GestionU, alignment7, "alignment7");
-  GLADE_HOOKUP_OBJECT (GestionU, hbox7, "hbox7");
-  GLADE_HOOKUP_OBJECT (GestionU, image7, "image7");
-  GLADE_HOOKUP_OBJECT (GestionU, label63, "label63");
   GLADE_HOOKUP_OBJECT (GestionU, affichageTree, "affichageTree");
   GLADE_HOOKUP_OBJECT (GestionU, button_SupprimerU, "button_SupprimerU");
   GLADE_HOOKUP_OBJECT (GestionU, alignment8, "alignment8");
@@ -540,6 +538,11 @@ create_GestionU (void)
   GLADE_HOOKUP_OBJECT (GestionU, hbox9, "hbox9");
   GLADE_HOOKUP_OBJECT (GestionU, image9, "image9");
   GLADE_HOOKUP_OBJECT (GestionU, label65, "label65");
+  GLADE_HOOKUP_OBJECT (GestionU, button_ModifierU, "button_ModifierU");
+  GLADE_HOOKUP_OBJECT (GestionU, alignment7, "alignment7");
+  GLADE_HOOKUP_OBJECT (GestionU, hbox7, "hbox7");
+  GLADE_HOOKUP_OBJECT (GestionU, image7, "image7");
+  GLADE_HOOKUP_OBJECT (GestionU, label63, "label63");
 
   return GestionU;
 }
@@ -3265,19 +3268,15 @@ create_ModifierU (void)
   GtkWidget *label184;
   GtkWidget *label183;
   GtkWidget *label186;
-  GtkObject *Modifer_jourU_adj;
-  GtkWidget *Modifer_jourU;
-  GtkObject *Modifer_moisU_adj;
-  GtkWidget *Modifer_moisU;
+  GtkObject *Modifier_jourU_adj;
+  GtkWidget *Modifier_jourU;
+  GtkObject *Modifier_moisU_adj;
+  GtkWidget *Modifier_moisU;
   GtkObject *Modifier_anneeU_adj;
   GtkWidget *Modifier_anneeU;
   GtkWidget *label187;
-  GtkWidget *Modifer_hommeU;
-  GSList *Modifer_hommeU_group = NULL;
-  GtkWidget *Modifer_femmeU;
   GtkWidget *label188;
   GtkWidget *label182;
-  GtkWidget *comboboxentry14;
   GtkWidget *label189;
   GtkWidget *Modifier_nbvU;
   GtkWidget *ModiferUser;
@@ -3285,6 +3284,11 @@ create_ModifierU (void)
   GtkWidget *hbox39;
   GtkWidget *image39;
   GtkWidget *label190;
+  GtkWidget *Modifier_Search;
+  GtkWidget *comboboxentry14;
+  GtkWidget *Modifier_hommeU;
+  GSList *Modifier_hommeU_group = NULL;
+  GtkWidget *Modifier_femmeU;
 
   ModifierU = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (ModifierU), _("Modifier Utilisateur"));
@@ -3331,17 +3335,17 @@ create_ModifierU (void)
   gtk_fixed_put (GTK_FIXED (fixed24), label186, 8, 192);
   gtk_widget_set_size_request (label186, 144, 41);
 
-  Modifer_jourU_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
-  Modifer_jourU = gtk_spin_button_new (GTK_ADJUSTMENT (Modifer_jourU_adj), 1, 0);
-  gtk_widget_show (Modifer_jourU);
-  gtk_fixed_put (GTK_FIXED (fixed24), Modifer_jourU, 144, 200);
-  gtk_widget_set_size_request (Modifer_jourU, 60, 27);
+  Modifier_jourU_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
+  Modifier_jourU = gtk_spin_button_new (GTK_ADJUSTMENT (Modifier_jourU_adj), 1, 0);
+  gtk_widget_show (Modifier_jourU);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_jourU, 144, 200);
+  gtk_widget_set_size_request (Modifier_jourU, 60, 27);
 
-  Modifer_moisU_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
-  Modifer_moisU = gtk_spin_button_new (GTK_ADJUSTMENT (Modifer_moisU_adj), 1, 0);
-  gtk_widget_show (Modifer_moisU);
-  gtk_fixed_put (GTK_FIXED (fixed24), Modifer_moisU, 208, 200);
-  gtk_widget_set_size_request (Modifer_moisU, 60, 27);
+  Modifier_moisU_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
+  Modifier_moisU = gtk_spin_button_new (GTK_ADJUSTMENT (Modifier_moisU_adj), 1, 0);
+  gtk_widget_show (Modifier_moisU);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_moisU, 208, 200);
+  gtk_widget_set_size_request (Modifier_moisU, 60, 27);
 
   Modifier_anneeU_adj = gtk_adjustment_new (2000, 1900, 2004, 1, 10, 10);
   Modifier_anneeU = gtk_spin_button_new (GTK_ADJUSTMENT (Modifier_anneeU_adj), 1, 0);
@@ -3354,20 +3358,6 @@ create_ModifierU (void)
   gtk_fixed_put (GTK_FIXED (fixed24), label187, 528, 96);
   gtk_widget_set_size_request (label187, 80, 25);
 
-  Modifer_hommeU = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
-  gtk_widget_show (Modifer_hommeU);
-  gtk_fixed_put (GTK_FIXED (fixed24), Modifer_hommeU, 648, 96);
-  gtk_widget_set_size_request (Modifer_hommeU, 124, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifer_hommeU), Modifer_hommeU_group);
-  Modifer_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifer_hommeU));
-
-  Modifer_femmeU = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
-  gtk_widget_show (Modifer_femmeU);
-  gtk_fixed_put (GTK_FIXED (fixed24), Modifer_femmeU, 648, 136);
-  gtk_widget_set_size_request (Modifer_femmeU, 124, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifer_femmeU), Modifer_hommeU_group);
-  Modifer_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifer_femmeU));
-
   label188 = gtk_label_new (_("Type :"));
   gtk_widget_show (label188);
   gtk_fixed_put (GTK_FIXED (fixed24), label188, 544, 216);
@@ -3379,15 +3369,6 @@ create_ModifierU (void)
   gtk_widget_set_size_request (label182, 240, 48);
   gtk_misc_set_alignment (GTK_MISC (label182), 0.47, 0.5);
   gtk_label_set_ellipsize (GTK_LABEL (label182), PANGO_ELLIPSIZE_END);
-
-  comboboxentry14 = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (comboboxentry14);
-  gtk_fixed_put (GTK_FIXED (fixed24), comboboxentry14, 600, 208);
-  gtk_widget_set_size_request (comboboxentry14, 189, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("Admin"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("Electeur"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("Observateur"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("ABV"));
 
   label189 = gtk_label_new (_("Num Bureau de vote :"));
   gtk_widget_show (label189);
@@ -3421,8 +3402,39 @@ create_ModifierU (void)
   gtk_widget_show (label190);
   gtk_box_pack_start (GTK_BOX (hbox39), label190, FALSE, FALSE, 0);
 
+  Modifier_Search = gtk_button_new_with_mnemonic (_("Search"));
+  gtk_widget_show (Modifier_Search);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_Search, 296, 96);
+  gtk_widget_set_size_request (Modifier_Search, 74, 29);
+
+  comboboxentry14 = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (comboboxentry14);
+  gtk_fixed_put (GTK_FIXED (fixed24), comboboxentry14, 600, 208);
+  gtk_widget_set_size_request (comboboxentry14, 189, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("Admin"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("Electeur"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("Observateur"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("ABV"));
+
+  Modifier_hommeU = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
+  gtk_widget_show (Modifier_hommeU);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_hommeU, 648, 96);
+  gtk_widget_set_size_request (Modifier_hommeU, 124, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifier_hommeU), Modifier_hommeU_group);
+  Modifier_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifier_hommeU));
+
+  Modifier_femmeU = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
+  gtk_widget_show (Modifier_femmeU);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_femmeU, 648, 136);
+  gtk_widget_set_size_request (Modifier_femmeU, 124, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifier_femmeU), Modifier_hommeU_group);
+  Modifier_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifier_femmeU));
+
   g_signal_connect ((gpointer) ModiferUser, "clicked",
                     G_CALLBACK (on_ModiferUser_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) Modifier_Search, "clicked",
+                    G_CALLBACK (on_Modifier_Search_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -3435,15 +3447,12 @@ create_ModifierU (void)
   GLADE_HOOKUP_OBJECT (ModifierU, label184, "label184");
   GLADE_HOOKUP_OBJECT (ModifierU, label183, "label183");
   GLADE_HOOKUP_OBJECT (ModifierU, label186, "label186");
-  GLADE_HOOKUP_OBJECT (ModifierU, Modifer_jourU, "Modifer_jourU");
-  GLADE_HOOKUP_OBJECT (ModifierU, Modifer_moisU, "Modifer_moisU");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_jourU, "Modifier_jourU");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_moisU, "Modifier_moisU");
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_anneeU, "Modifier_anneeU");
   GLADE_HOOKUP_OBJECT (ModifierU, label187, "label187");
-  GLADE_HOOKUP_OBJECT (ModifierU, Modifer_hommeU, "Modifer_hommeU");
-  GLADE_HOOKUP_OBJECT (ModifierU, Modifer_femmeU, "Modifer_femmeU");
   GLADE_HOOKUP_OBJECT (ModifierU, label188, "label188");
   GLADE_HOOKUP_OBJECT (ModifierU, label182, "label182");
-  GLADE_HOOKUP_OBJECT (ModifierU, comboboxentry14, "comboboxentry14");
   GLADE_HOOKUP_OBJECT (ModifierU, label189, "label189");
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_nbvU, "Modifier_nbvU");
   GLADE_HOOKUP_OBJECT (ModifierU, ModiferUser, "ModiferUser");
@@ -3451,6 +3460,10 @@ create_ModifierU (void)
   GLADE_HOOKUP_OBJECT (ModifierU, hbox39, "hbox39");
   GLADE_HOOKUP_OBJECT (ModifierU, image39, "image39");
   GLADE_HOOKUP_OBJECT (ModifierU, label190, "label190");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_Search, "Modifier_Search");
+  GLADE_HOOKUP_OBJECT (ModifierU, comboboxentry14, "comboboxentry14");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_hommeU, "Modifier_hommeU");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_femmeU, "Modifier_femmeU");
 
   return ModifierU;
 }

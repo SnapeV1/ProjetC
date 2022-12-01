@@ -75,13 +75,6 @@ on_button_gestionBV_clicked            (GtkButton       *button,
 }
 
 
-void
-on_button_ModifierU_clicked            (GtkButton       *objet,
-                                        gpointer         user_data)
-{
-
-}
-
 
 void
 on_button_ajouterbv_clicked            (GtkButton       *button,
@@ -304,23 +297,30 @@ userDeleted.vote=vote;
 }
 
 }
-
+//-------------------------------------EDIT----------------------------------
 
 void
 on_ModiferUser_clicked                 (GtkButton       *objet,
                                         gpointer         user_data)
 {
-GtkWidget *fenetre_ajout;
-GtkWidget *fenetre_afficher;
-GtkWidget *treeview;
 
-fenetre_ajout = lookup_widget(objet,"AjouterUtilisateur");
+GtkWidget *entry_cinU,*entry_nomU,*entry_prenomU,*jour,*mois,*annee,*radiobutton_hommeU,*radiobutton_femmeU,*type,*numbv,*w1;
+w1 = lookup_widget(objet,"ModifierU");
+entry_cinU = lookup_widget (objet,"Modifier_cinU" );
+entry_nomU =lookup_widget (objet,"Modifier_nomU" );
+entry_prenomU =lookup_widget (objet,"Modifier_prenomU" );
+jour = lookup_widget (objet,"Modifier_jourU" );
+mois = lookup_widget (objet,"Modifier_moisU" );
+annee = lookup_widget (objet,"Modifier_anneeU" );
+type = lookup_widget (objet,"comboboxentry14" );
+numbv = lookup_widget (objet,"Modifier_nbvU" );
 
-gtk_widget_hide(fenetre_ajout);
-fenetre_afficher=lookup_widget(objet,"GestionU");
-fenetre_afficher=create_GestionU();
+
 }
 
+
+
+//----------------------------------------DELETE----------------------------------
 
 void
 on_button_SupprimerU_clicked           (GtkButton       *objet,
@@ -394,6 +394,74 @@ gtk_widget_hide(w1);
 gtk_widget_show(fenetre_afficher);
 treeview1=lookup_widget(fenetre_afficher,"affichageTree");
 afficherU(treeview1,"search.txt");
+
+
+}
+
+
+
+
+void
+on_button_ModifierU_clicked            (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_modifier;
+GtkWidget *fenetre_afficher,*w1;
+GtkWidget *treeview;
+GtkWidget  *id_entry;
+
+w1 = lookup_widget(objet,"modifierU");
+fenetre_modifier=create_ModifierU();
+fenetre_afficher = lookup_widget(objet,"GestionU");
+gtk_widget_hide(fenetre_afficher);
+gtk_widget_show(fenetre_modifier);
+
+}
+
+
+void
+on_Modifier_Search_clicked             (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *cin,*id_entry,*nom_entry,*prenom_entry,*type_entry,*jour,*mois,*annee,*nbv,*homme,*femme;
+int id;
+
+id_entry = lookup_widget (objet,"Modifier_cinU");
+nom_entry = lookup_widget (objet,"Modifier_nomU");
+prenom_entry = lookup_widget (objet,"Modifier_prenomU");
+type_entry=lookup_widget (objet,"comboboxentry14");
+jour=lookup_widget (objet,"Modifier_jourU");
+mois=lookup_widget (objet,"Modifier_moisU");
+annee=lookup_widget (objet,"Modifier_anneeU");
+nbv=lookup_widget (objet,"Modifier_nbvU");
+homme=lookup_widget(objet,"Modifier_hommeU");
+femme=lookup_widget(objet,"Modifier_femmeU");
+id=atoi(gtk_entry_get_text(GTK_ENTRY(id_entry)));
+
+utilisateur u=chercherU("utilisateur.txt",id);
+gtk_entry_set_text(GTK_ENTRY(nom_entry),u.nom);
+gtk_entry_set_text(GTK_ENTRY(prenom_entry),u.prenom);
+int j;
+if(strcmp(u.type,"Admin")==0)j=0;
+if(strcmp(u.type,"Electeur")==0)j=1;
+if(strcmp(u.type,"Observateur")==0)j=2;
+if(strcmp(u.type,"ABV")==0)j=3;
+
+ gtk_combo_box_set_active(GTK_COMBO_BOX(type_entry),j);
+	 gtk_spin_button_set_value(jour,u.DateNaissance.jours);
+	 gtk_spin_button_set_value(mois,u.DateNaissance.mois);
+	 gtk_spin_button_set_value(annee,u.DateNaissance.annee);
+
+
+char ch[50];
+sprintf(ch,"%d",u.numBV);
+gtk_entry_set_text(GTK_ENTRY(nbv),ch);
+	if(strcmp(u.genre,"homme")==0) {   gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme),TRUE);gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme),FALSE);}
+           
+	else {   gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme),FALSE); gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme),TRUE);}
+
+
+
 
 
 }

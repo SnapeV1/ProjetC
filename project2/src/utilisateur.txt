@@ -1,0 +1,7 @@
+14407183 aziz meshrjel 2000 4 11 homme Electeur 5 -1
+651651 aziz aziz 1960 7 1 femme Admin 1 -1
+12345678 amine hammeda 1972 3 15 homme Electeur 12 -1
+12345678 amine test2 2002 3 1 homme Electeur 12 -1
+98765432 125 azdazd 2000 1 2 femme Electeur 3 -1
+15732981 sami fadf 2000 1 1 femme Electeur 3 -1
+12896576 uwu senpai 2001 2 1 homme Electeur 12 -1

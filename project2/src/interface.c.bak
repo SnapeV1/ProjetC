@@ -3286,9 +3286,9 @@ create_ModifierU (void)
   GtkWidget *label190;
   GtkWidget *Modifier_Search;
   GtkWidget *comboboxentry14;
-  GtkWidget *Modifer_hommeU;
-  GSList *Modifer_hommeU_group = NULL;
-  GtkWidget *Modifer_femmeU;
+  GtkWidget *Modifier_hommeU;
+  GSList *Modifier_hommeU_group = NULL;
+  GtkWidget *Modifier_femmeU;
 
   ModifierU = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (ModifierU), _("Modifier Utilisateur"));
@@ -3416,19 +3416,19 @@ create_ModifierU (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("Observateur"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry14), _("ABV"));
 
-  Modifer_hommeU = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
-  gtk_widget_show (Modifer_hommeU);
-  gtk_fixed_put (GTK_FIXED (fixed24), Modifer_hommeU, 648, 96);
-  gtk_widget_set_size_request (Modifer_hommeU, 124, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifer_hommeU), Modifer_hommeU_group);
-  Modifer_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifer_hommeU));
+  Modifier_hommeU = gtk_radio_button_new_with_mnemonic (NULL, _("Homme"));
+  gtk_widget_show (Modifier_hommeU);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_hommeU, 648, 96);
+  gtk_widget_set_size_request (Modifier_hommeU, 124, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifier_hommeU), Modifier_hommeU_group);
+  Modifier_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifier_hommeU));
 
-  Modifer_femmeU = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
-  gtk_widget_show (Modifer_femmeU);
-  gtk_fixed_put (GTK_FIXED (fixed24), Modifer_femmeU, 648, 136);
-  gtk_widget_set_size_request (Modifer_femmeU, 124, 24);
-  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifer_femmeU), Modifer_hommeU_group);
-  Modifer_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifer_femmeU));
+  Modifier_femmeU = gtk_radio_button_new_with_mnemonic (NULL, _("Femme"));
+  gtk_widget_show (Modifier_femmeU);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_femmeU, 648, 136);
+  gtk_widget_set_size_request (Modifier_femmeU, 124, 24);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifier_femmeU), Modifier_hommeU_group);
+  Modifier_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifier_femmeU));
 
   g_signal_connect ((gpointer) ModiferUser, "clicked",
                     G_CALLBACK (on_ModiferUser_clicked),
@@ -3462,8 +3462,8 @@ create_ModifierU (void)
   GLADE_HOOKUP_OBJECT (ModifierU, label190, "label190");
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_Search, "Modifier_Search");
   GLADE_HOOKUP_OBJECT (ModifierU, comboboxentry14, "comboboxentry14");
-  GLADE_HOOKUP_OBJECT (ModifierU, Modifer_hommeU, "Modifer_hommeU");
-  GLADE_HOOKUP_OBJECT (ModifierU, Modifer_femmeU, "Modifer_femmeU");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_hommeU, "Modifier_hommeU");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_femmeU, "Modifier_femmeU");
 
   return ModifierU;
 }

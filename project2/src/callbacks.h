@@ -132,3 +132,11 @@ on_button_ModifierU_clicked            (GtkButton       *objet,
 void
 on_Modifier_Search_clicked             (GtkButton       *objet,
                                         gpointer         user_data);
+
+void
+on_Modifier_hommeU_toggled             (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Modifier_femmeU_toggled             (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);

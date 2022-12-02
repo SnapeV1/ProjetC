@@ -10,6 +10,8 @@
 #include "utilisateur.h"
 int test;
 int test2;
+int testModifier;
+int ToUse;
 utilisateur userDeleted;
 
 void
@@ -303,9 +305,9 @@ void
 on_ModiferUser_clicked                 (GtkButton       *objet,
                                         gpointer         user_data)
 {
-
+utilisateur user;
 GtkWidget *entry_cinU,*entry_nomU,*entry_prenomU,*jour,*mois,*annee,*radiobutton_hommeU,*radiobutton_femmeU,*type,*numbv,*w1;
-w1 = lookup_widget(objet,"ModifierU");
+int id;
 entry_cinU = lookup_widget (objet,"Modifier_cinU" );
 entry_nomU =lookup_widget (objet,"Modifier_nomU" );
 entry_prenomU =lookup_widget (objet,"Modifier_prenomU" );
@@ -314,6 +316,25 @@ mois = lookup_widget (objet,"Modifier_moisU" );
 annee = lookup_widget (objet,"Modifier_anneeU" );
 type = lookup_widget (objet,"comboboxentry14" );
 numbv = lookup_widget (objet,"Modifier_nbvU" );
+id=atoi(gtk_entry_get_text(GTK_ENTRY(entry_cinU)));
+
+user.cin=id;
+strcpy(user.nom,gtk_entry_get_text(GTK_ENTRY(entry_nomU)));
+strcpy(user.prenom,gtk_entry_get_text(GTK_ENTRY(entry_prenomU)));
+user.DateNaissance.jours=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour));
+user.DateNaissance.mois=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois));
+user.DateNaissance.annee=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(annee));
+
+strcpy(user.type,gtk_combo_box_get_active_text(GTK_COMBO_BOX(type)));
+user.numBV=atoi(gtk_entry_get_text(GTK_ENTRY(numbv)));
+
+if(testModifier==1)strcpy(user.genre,"homme");
+else strcpy(user.genre,"femme");
+utilisateur u=chercherU("utilisateur.txt",atoi(gtk_entry_get_text(GTK_ENTRY(entry_cinU))));
+user.vote=u.vote;
+int x=modifierU("utilisateur.txt",ToUse,user);
+
+
 
 
 }
@@ -418,7 +439,7 @@ gtk_widget_show(fenetre_modifier);
 
 }
 
-
+		//searching the id to modify
 void
 on_Modifier_Search_clicked             (GtkButton       *objet,
                                         gpointer         user_data)
@@ -461,8 +482,26 @@ gtk_entry_set_text(GTK_ENTRY(nbv),ch);
 	else {   gtk_toggle_button_set_active(GTK_RADIO_BUTTON(homme),FALSE); gtk_toggle_button_set_active(GTK_RADIO_BUTTON(femme),TRUE);}
 
 
+ToUse=id;
 
 
+}
 
+
+void
+on_Modifier_hommeU_toggled             (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+gboolean T=gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton));
+if (T) testModifier=1;
+}
+
+
+void
+on_Modifier_femmeU_toggled             (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+gboolean T=gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton));
+if (T) testModifier=2;
 }
 

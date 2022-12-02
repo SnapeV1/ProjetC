@@ -8497,6 +8497,7 @@ ABV</property>
 	  <property name="active">False</property>
 	  <property name="inconsistent">False</property>
 	  <property name="draw_indicator">True</property>
+	  <signal name="toggled" handler="on_Modifier_hommeU_toggled" last_modification_time="Fri, 02 Dec 2022 13:24:48 GMT"/>
 	</widget>
 	<packing>
 	  <property name="x">648</property>
@@ -8518,6 +8519,7 @@ ABV</property>
 	  <property name="inconsistent">False</property>
 	  <property name="draw_indicator">True</property>
 	  <property name="group">Modifier_hommeU</property>
+	  <signal name="toggled" handler="on_Modifier_femmeU_toggled" last_modification_time="Fri, 02 Dec 2022 13:24:56 GMT"/>
 	</widget>
 	<packing>
 	  <property name="x">648</property>

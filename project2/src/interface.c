@@ -3436,6 +3436,12 @@ create_ModifierU (void)
   g_signal_connect ((gpointer) Modifier_Search, "clicked",
                     G_CALLBACK (on_Modifier_Search_clicked),
                     NULL);
+  g_signal_connect ((gpointer) Modifier_hommeU, "toggled",
+                    G_CALLBACK (on_Modifier_hommeU_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) Modifier_femmeU, "toggled",
+                    G_CALLBACK (on_Modifier_femmeU_toggled),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (ModifierU, ModifierU, "ModifierU");

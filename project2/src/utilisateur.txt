@@ -1,4 +1,3 @@
-15478963 first last 1979 7 22 femme Observateur 8 -1
 12345673 amine azfazf 1998 3 3 femme Admin 3 -1
 12345673 amine azfazf 1998 3 3 femme Admin 3 -1
 12345679 amine azfazf 2000 3 3 homme Electeur 3 -1

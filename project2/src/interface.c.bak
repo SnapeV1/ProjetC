@@ -287,71 +287,6 @@ create_AjoutUtilisateur (void)
 }
 
 GtkWidget*
-create_Espace_d_administrateur (void)
-{
-  GtkWidget *Espace_d_administrateur;
-  GtkWidget *fixed2;
-  GtkWidget *label9;
-  GtkWidget *Admin;
-  GtkWidget *button_gestionU;
-  GtkWidget *button_gestionE;
-  GtkWidget *button_gestionBV;
-
-  Espace_d_administrateur = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (Espace_d_administrateur), _("Espace d'administrateur"));
-
-  fixed2 = gtk_fixed_new ();
-  gtk_widget_show (fixed2);
-  gtk_container_add (GTK_CONTAINER (Espace_d_administrateur), fixed2);
-
-  label9 = gtk_label_new ("");
-  gtk_widget_show (label9);
-  gtk_fixed_put (GTK_FIXED (fixed2), label9, 312, 40);
-  gtk_widget_set_size_request (label9, 88, 49);
-
-  Admin = gtk_label_new (_("Espace d'administrateur"));
-  gtk_widget_show (Admin);
-  gtk_fixed_put (GTK_FIXED (fixed2), Admin, 264, 16);
-  gtk_widget_set_size_request (Admin, 184, 65);
-
-  button_gestionU = gtk_button_new_with_mnemonic (_("Gestion des utilisateurs"));
-  gtk_widget_show (button_gestionU);
-  gtk_fixed_put (GTK_FIXED (fixed2), button_gestionU, 240, 88);
-  gtk_widget_set_size_request (button_gestionU, 256, 85);
-
-  button_gestionE = gtk_button_new_with_mnemonic (_("Gestion des elections"));
-  gtk_widget_show (button_gestionE);
-  gtk_fixed_put (GTK_FIXED (fixed2), button_gestionE, 240, 192);
-  gtk_widget_set_size_request (button_gestionE, 256, 85);
-
-  button_gestionBV = gtk_button_new_with_mnemonic (_("Gestion des bureau de vote"));
-  gtk_widget_show (button_gestionBV);
-  gtk_fixed_put (GTK_FIXED (fixed2), button_gestionBV, 240, 296);
-  gtk_widget_set_size_request (button_gestionBV, 256, 88);
-
-  g_signal_connect ((gpointer) button_gestionU, "clicked",
-                    G_CALLBACK (on_button_gestionU_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_gestionE, "clicked",
-                    G_CALLBACK (on_button_gestionE_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) button_gestionBV, "clicked",
-                    G_CALLBACK (on_button_gestionBV_clicked),
-                    NULL);
-
-  /* Store pointers to all widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF (Espace_d_administrateur, Espace_d_administrateur, "Espace_d_administrateur");
-  GLADE_HOOKUP_OBJECT (Espace_d_administrateur, fixed2, "fixed2");
-  GLADE_HOOKUP_OBJECT (Espace_d_administrateur, label9, "label9");
-  GLADE_HOOKUP_OBJECT (Espace_d_administrateur, Admin, "Admin");
-  GLADE_HOOKUP_OBJECT (Espace_d_administrateur, button_gestionU, "button_gestionU");
-  GLADE_HOOKUP_OBJECT (Espace_d_administrateur, button_gestionE, "button_gestionE");
-  GLADE_HOOKUP_OBJECT (Espace_d_administrateur, button_gestionBV, "button_gestionBV");
-
-  return Espace_d_administrateur;
-}
-
-GtkWidget*
 create_GestionU (void)
 {
   GtkWidget *GestionU;
@@ -381,6 +316,7 @@ create_GestionU (void)
   GtkWidget *hbox7;
   GtkWidget *image7;
   GtkWidget *label63;
+  GtkWidget *button_homeU;
 
   GestionU = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (GestionU), _("Gestion Utilisateur"));
@@ -499,6 +435,11 @@ create_GestionU (void)
   gtk_widget_show (label63);
   gtk_box_pack_start (GTK_BOX (hbox7), label63, FALSE, FALSE, 0);
 
+  button_homeU = gtk_button_new_with_mnemonic (_("Home"));
+  gtk_widget_show (button_homeU);
+  gtk_fixed_put (GTK_FIXED (fixed3), button_homeU, 8, 232);
+  gtk_widget_set_size_request (button_homeU, 72, 40);
+
   g_signal_connect ((gpointer) affichageTree, "row_activated",
                     G_CALLBACK (on_affichageTree_row_activated),
                     NULL);
@@ -513,6 +454,9 @@ create_GestionU (void)
                     NULL);
   g_signal_connect ((gpointer) button_ModifierU, "clicked",
                     G_CALLBACK (on_button_ModifierU_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button_homeU, "clicked",
+                    G_CALLBACK (on_button_homeU_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -543,6 +487,7 @@ create_GestionU (void)
   GLADE_HOOKUP_OBJECT (GestionU, hbox7, "hbox7");
   GLADE_HOOKUP_OBJECT (GestionU, image7, "image7");
   GLADE_HOOKUP_OBJECT (GestionU, label63, "label63");
+  GLADE_HOOKUP_OBJECT (GestionU, button_homeU, "button_homeU");
 
   return GestionU;
 }
@@ -3289,6 +3234,7 @@ create_ModifierU (void)
   GtkWidget *Modifier_hommeU;
   GSList *Modifier_hommeU_group = NULL;
   GtkWidget *Modifier_femmeU;
+  GtkWidget *Modifier_msg;
 
   ModifierU = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (ModifierU), _("Modifier Utilisateur"));
@@ -3430,11 +3376,22 @@ create_ModifierU (void)
   gtk_radio_button_set_group (GTK_RADIO_BUTTON (Modifier_femmeU), Modifier_hommeU_group);
   Modifier_hommeU_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (Modifier_femmeU));
 
+  Modifier_msg = gtk_label_new ("");
+  gtk_widget_show (Modifier_msg);
+  gtk_fixed_put (GTK_FIXED (fixed24), Modifier_msg, 328, 280);
+  gtk_widget_set_size_request (Modifier_msg, 256, 80);
+
   g_signal_connect ((gpointer) ModiferUser, "clicked",
                     G_CALLBACK (on_ModiferUser_clicked),
                     NULL);
   g_signal_connect ((gpointer) Modifier_Search, "clicked",
                     G_CALLBACK (on_Modifier_Search_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) Modifier_hommeU, "toggled",
+                    G_CALLBACK (on_Modifier_hommeU_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) Modifier_femmeU, "toggled",
+                    G_CALLBACK (on_Modifier_femmeU_toggled),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -3464,7 +3421,60 @@ create_ModifierU (void)
   GLADE_HOOKUP_OBJECT (ModifierU, comboboxentry14, "comboboxentry14");
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_hommeU, "Modifier_hommeU");
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_femmeU, "Modifier_femmeU");
+  GLADE_HOOKUP_OBJECT (ModifierU, Modifier_msg, "Modifier_msg");
 
   return ModifierU;
+}
+
+GtkWidget*
+create_Eadmin (void)
+{
+  GtkWidget *Eadmin;
+  GtkWidget *fixed25;
+  GtkWidget *button44;
+  GtkWidget *button_gestionElection;
+  GtkWidget *button_GestionU;
+  GtkWidget *label191;
+
+  Eadmin = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (Eadmin), _("Eadmin"));
+
+  fixed25 = gtk_fixed_new ();
+  gtk_widget_show (fixed25);
+  gtk_container_add (GTK_CONTAINER (Eadmin), fixed25);
+
+  button44 = gtk_button_new_with_mnemonic (_("Gestion des bureau de vote"));
+  gtk_widget_show (button44);
+  gtk_fixed_put (GTK_FIXED (fixed25), button44, 64, 400);
+  gtk_widget_set_size_request (button44, 448, 144);
+
+  button_gestionElection = gtk_button_new_with_mnemonic (_("Gestion d'elections"));
+  gtk_widget_show (button_gestionElection);
+  gtk_fixed_put (GTK_FIXED (fixed25), button_gestionElection, 64, 248);
+  gtk_widget_set_size_request (button_gestionElection, 440, 128);
+
+  button_GestionU = gtk_button_new_with_mnemonic (_("Gestion d'utilisateur"));
+  gtk_widget_show (button_GestionU);
+  gtk_fixed_put (GTK_FIXED (fixed25), button_GestionU, 64, 104);
+  gtk_widget_set_size_request (button_GestionU, 440, 120);
+
+  label191 = gtk_label_new (_("Espace Admin"));
+  gtk_widget_show (label191);
+  gtk_fixed_put (GTK_FIXED (fixed25), label191, 200, 16);
+  gtk_widget_set_size_request (label191, 192, 56);
+
+  g_signal_connect ((gpointer) button_GestionU, "clicked",
+                    G_CALLBACK (on_button_GestionU_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (Eadmin, Eadmin, "Eadmin");
+  GLADE_HOOKUP_OBJECT (Eadmin, fixed25, "fixed25");
+  GLADE_HOOKUP_OBJECT (Eadmin, button44, "button44");
+  GLADE_HOOKUP_OBJECT (Eadmin, button_gestionElection, "button_gestionElection");
+  GLADE_HOOKUP_OBJECT (Eadmin, button_GestionU, "button_GestionU");
+  GLADE_HOOKUP_OBJECT (Eadmin, label191, "label191");
+
+  return Eadmin;
 }
 

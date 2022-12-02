@@ -5,17 +5,6 @@ void
 on_button_Ajouter_clicked              (GtkButton       *objet,
                                         gpointer         user_data);
 
-void
-on_button_gestionU_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_gestionE_clicked             (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_button_gestionBV_clicked            (GtkButton       *button,
-                                        gpointer         user_data);
 
 void
 on_button_ModifierU_clicked            (GtkButton       *objet,
@@ -139,4 +128,12 @@ on_Modifier_hommeU_toggled             (GtkToggleButton *togglebutton,
 
 void
 on_Modifier_femmeU_toggled             (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_button_homeU_clicked                (GtkButton       *objet,
+                                        gpointer         user_data);
+
+void
+on_button_GestionU_clicked             (GtkButton       *button,
                                         gpointer         user_data);

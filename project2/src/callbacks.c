@@ -53,28 +53,8 @@ else gtk_label_set_text(GTK_LABEL(output),"--/ Verify your information /--");
 }
 
 
-void
-on_button_gestionU_clicked             (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
 
 
-void
-on_button_gestionE_clicked             (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_button_gestionBV_clicked            (GtkButton       *button,
-                                        gpointer         user_data)
-{
-
-}
 
 
 
@@ -306,7 +286,7 @@ on_ModiferUser_clicked                 (GtkButton       *objet,
                                         gpointer         user_data)
 {
 utilisateur user;
-GtkWidget *entry_cinU,*entry_nomU,*entry_prenomU,*jour,*mois,*annee,*radiobutton_hommeU,*radiobutton_femmeU,*type,*numbv,*w1;
+GtkWidget *entry_cinU,*entry_nomU,*entry_prenomU,*jour,*mois,*annee,*radiobutton_hommeU,*radiobutton_femmeU,*type,*numbv,*msg;
 int id;
 entry_cinU = lookup_widget (objet,"Modifier_cinU" );
 entry_nomU =lookup_widget (objet,"Modifier_nomU" );
@@ -316,6 +296,7 @@ mois = lookup_widget (objet,"Modifier_moisU" );
 annee = lookup_widget (objet,"Modifier_anneeU" );
 type = lookup_widget (objet,"comboboxentry14" );
 numbv = lookup_widget (objet,"Modifier_nbvU" );
+msg=lookup_widget(objet,"Modifier_msg");
 id=atoi(gtk_entry_get_text(GTK_ENTRY(entry_cinU)));
 
 user.cin=id;
@@ -332,8 +313,10 @@ if(testModifier==1)strcpy(user.genre,"homme");
 else strcpy(user.genre,"femme");
 utilisateur u=chercherU("utilisateur.txt",atoi(gtk_entry_get_text(GTK_ENTRY(entry_cinU))));
 user.vote=u.vote;
-int x=modifierU("utilisateur.txt",ToUse,user);
+if ((Verif_CIN(u.cin))&&(verif_STRING(u.nom))&&(verif_STRING(u.prenom))){int x=modifierU("utilisateur.txt",ToUse,user);
+gtk_label_set_text(GTK_LABEL(msg),"--/Edited Successfully/--");}
 
+else gtk_label_set_text(GTK_LABEL(msg),"--/ Check your informations /--");
 
 
 
@@ -434,7 +417,7 @@ GtkWidget  *id_entry;
 w1 = lookup_widget(objet,"modifierU");
 fenetre_modifier=create_ModifierU();
 fenetre_afficher = lookup_widget(objet,"GestionU");
-gtk_widget_hide(fenetre_afficher);
+
 gtk_widget_show(fenetre_modifier);
 
 }
@@ -460,6 +443,7 @@ femme=lookup_widget(objet,"Modifier_femmeU");
 id=atoi(gtk_entry_get_text(GTK_ENTRY(id_entry)));
 
 utilisateur u=chercherU("utilisateur.txt",id);
+
 gtk_entry_set_text(GTK_ENTRY(nom_entry),u.nom);
 gtk_entry_set_text(GTK_ENTRY(prenom_entry),u.prenom);
 int j;
@@ -503,5 +487,42 @@ on_Modifier_femmeU_toggled             (GtkToggleButton *togglebutton,
 {
 gboolean T=gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton));
 if (T) testModifier=2;
+}
+
+
+void
+on_button_homeU_clicked                (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+
+GtkWidget *fenetre_afficher,*admin;
+fenetre_afficher = lookup_widget(objet,"GestionU");
+gtk_widget_hide(fenetre_afficher);
+admin=lookup_widget(objet,"Eadmin");
+admin=create_Eadmin();
+gtk_widget_show(admin);
+
+
+
+}
+
+
+void
+on_button_GestionU_clicked             (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_afficher,*admin;
+GtkWidget *treeview;
+fenetre_afficher = lookup_widget(objet,"GestionU");
+admin=lookup_widget(objet,"Eadmin");
+gtk_widget_hide(admin);
+fenetre_afficher=lookup_widget(objet,"GestionU");
+fenetre_afficher=create_GestionU();
+
+gtk_widget_show(fenetre_afficher);
+
+treeview=lookup_widget(fenetre_afficher,"affichageTree");
+afficherU(treeview,"utilisateur.txt");
+
 }
 

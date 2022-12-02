@@ -3,7 +3,6 @@
  */
 
 GtkWidget* create_AjoutUtilisateur (void);
-GtkWidget* create_Espace_d_administrateur (void);
 GtkWidget* create_GestionU (void);
 GtkWidget* create_gestiondebureaudevote (void);
 GtkWidget* create_Ajoutbv (void);
@@ -21,3 +20,4 @@ GtkWidget* create_MODIFIER (void);
 GtkWidget* create_ObservateurSupprimer (void);
 GtkWidget* create_Modification_observateur (void);
 GtkWidget* create_ModifierU (void);
+GtkWidget* create_Eadmin (void);

@@ -141,3 +141,11 @@ on_button_GestionU_clicked             (GtkButton       *objet,
 void
 on_button_RechercherType_clicked       (GtkButton       *objet,
                                         gpointer         user_data);
+
+void
+on_button_AjouterU_clicked             (GtkButton       *objet,
+                                        gpointer         user_data);
+
+void
+on_button_retour_clicked               (GtkButton       *objet,
+                                        gpointer         user_data);

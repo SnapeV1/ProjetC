@@ -235,6 +235,11 @@ fenetre_afficher=create_GestionU();
 
 gtk_widget_show(fenetre_afficher);
 
+
+fenetre_ajout=lookup_widget(objet,"AjoutUtilisateur");
+
+
+gtk_widget_hide(fenetre_ajout);
 treeview=lookup_widget(fenetre_afficher,"affichageTree");
 afficherU(treeview,"utilisateur.txt");
 }
@@ -409,16 +414,22 @@ void
 on_button_ModifierU_clicked            (GtkButton       *objet,
                                         gpointer         user_data)
 {
-GtkWidget *fenetre_modifier;
+GtkWidget *fenetre_ajout;
 GtkWidget *fenetre_afficher,*w1;
 GtkWidget *treeview;
 GtkWidget  *id_entry;
 
-w1 = lookup_widget(objet,"modifierU");
-fenetre_modifier=create_ModifierU();
-fenetre_afficher = lookup_widget(objet,"GestionU");
+w1=lookup_widget(objet,"GestionU");
+fenetre_afficher=create_GestionU();
+gtk_widget_hide(fenetre_afficher);
+gtk_widget_hide(w1);
+fenetre_ajout=lookup_widget(objet,"ModifierU");
 
-gtk_widget_show(fenetre_modifier);
+fenetre_ajout=create_ModifierU();
+gtk_widget_hide(fenetre_ajout);
+gtk_widget_show(fenetre_ajout);
+
+
 
 }
 
@@ -552,6 +563,62 @@ gtk_widget_hide(w1);
 gtk_widget_show(fenetre_afficher);
 treeview1=lookup_widget(fenetre_afficher,"affichageTree");
 afficherU(treeview1,"search.txt");
+
+
+
+
+
+}
+
+
+void
+on_button_AjouterU_clicked             (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *w1,*fenetre_afficher,*fenetre_ajout;
+w1=lookup_widget(objet,"GestionU");
+fenetre_afficher=create_GestionU();
+gtk_widget_hide(fenetre_afficher);
+gtk_widget_hide(w1);
+fenetre_ajout=lookup_widget(objet,"AjoutUtilisateur");
+
+fenetre_ajout=create_AjoutUtilisateur();
+gtk_widget_hide(fenetre_ajout);
+gtk_widget_show(fenetre_ajout);
+
+
+}
+
+
+void
+on_button_retour_clicked               (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+
+utilisateur user;
+GtkWidget *fenetre_ajout;
+GtkWidget *fenetre_afficher;
+GtkWidget *treeview;
+
+fenetre_ajout = lookup_widget(objet,"ModifierU");
+
+gtk_widget_hide(fenetre_ajout);
+fenetre_afficher=lookup_widget(objet,"GestionU");
+fenetre_afficher=create_GestionU();
+
+gtk_widget_show(fenetre_afficher);
+
+
+fenetre_ajout=lookup_widget(objet,"ModifierU");
+
+
+gtk_widget_hide(fenetre_ajout);
+treeview=lookup_widget(fenetre_afficher,"affichageTree");
+afficherU(treeview,"utilisateur.txt");
+
+
+
+
 
 
 

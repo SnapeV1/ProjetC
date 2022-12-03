@@ -293,11 +293,6 @@ create_GestionU (void)
   GtkWidget *fixed3;
   GtkWidget *label_gestionU;
   GtkWidget *entry_idRechercher;
-  GtkWidget *button_AjouterU;
-  GtkWidget *alignment6;
-  GtkWidget *hbox6;
-  GtkWidget *image6;
-  GtkWidget *label62;
   GtkWidget *affichageTree;
   GtkWidget *button_SupprimerU;
   GtkWidget *alignment8;
@@ -324,6 +319,11 @@ create_GestionU (void)
   GtkWidget *hbox40;
   GtkWidget *image40;
   GtkWidget *label193;
+  GtkWidget *button_AjouterU;
+  GtkWidget *alignment6;
+  GtkWidget *hbox6;
+  GtkWidget *image6;
+  GtkWidget *label62;
 
   GestionU = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (GestionU), _("Gestion Utilisateur"));
@@ -342,27 +342,6 @@ create_GestionU (void)
   gtk_fixed_put (GTK_FIXED (fixed3), entry_idRechercher, 880, 144);
   gtk_widget_set_size_request (entry_idRechercher, 160, 27);
   gtk_entry_set_invisible_char (GTK_ENTRY (entry_idRechercher), 8226);
-
-  button_AjouterU = gtk_button_new ();
-  gtk_widget_show (button_AjouterU);
-  gtk_fixed_put (GTK_FIXED (fixed3), button_AjouterU, 216, 448);
-  gtk_widget_set_size_request (button_AjouterU, 144, 48);
-
-  alignment6 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment6);
-  gtk_container_add (GTK_CONTAINER (button_AjouterU), alignment6);
-
-  hbox6 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox6);
-  gtk_container_add (GTK_CONTAINER (alignment6), hbox6);
-
-  image6 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image6);
-  gtk_box_pack_start (GTK_BOX (hbox6), image6, FALSE, FALSE, 0);
-
-  label62 = gtk_label_new_with_mnemonic (_("AJOUTER"));
-  gtk_widget_show (label62);
-  gtk_box_pack_start (GTK_BOX (hbox6), label62, FALSE, FALSE, 0);
 
   affichageTree = gtk_tree_view_new ();
   gtk_widget_show (affichageTree);
@@ -479,6 +458,27 @@ create_GestionU (void)
   gtk_widget_show (label193);
   gtk_box_pack_start (GTK_BOX (hbox40), label193, FALSE, FALSE, 0);
 
+  button_AjouterU = gtk_button_new ();
+  gtk_widget_show (button_AjouterU);
+  gtk_fixed_put (GTK_FIXED (fixed3), button_AjouterU, 216, 448);
+  gtk_widget_set_size_request (button_AjouterU, 144, 48);
+
+  alignment6 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment6);
+  gtk_container_add (GTK_CONTAINER (button_AjouterU), alignment6);
+
+  hbox6 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox6);
+  gtk_container_add (GTK_CONTAINER (alignment6), hbox6);
+
+  image6 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image6);
+  gtk_box_pack_start (GTK_BOX (hbox6), image6, FALSE, FALSE, 0);
+
+  label62 = gtk_label_new_with_mnemonic (_("AJOUTER"));
+  gtk_widget_show (label62);
+  gtk_box_pack_start (GTK_BOX (hbox6), label62, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) affichageTree, "row_activated",
                     G_CALLBACK (on_affichageTree_row_activated),
                     NULL);
@@ -500,17 +500,15 @@ create_GestionU (void)
   g_signal_connect ((gpointer) button_RechercherType, "clicked",
                     G_CALLBACK (on_button_RechercherType_clicked),
                     NULL);
+  g_signal_connect ((gpointer) button_AjouterU, "clicked",
+                    G_CALLBACK (on_button_AjouterU_clicked),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (GestionU, GestionU, "GestionU");
   GLADE_HOOKUP_OBJECT (GestionU, fixed3, "fixed3");
   GLADE_HOOKUP_OBJECT (GestionU, label_gestionU, "label_gestionU");
   GLADE_HOOKUP_OBJECT (GestionU, entry_idRechercher, "entry_idRechercher");
-  GLADE_HOOKUP_OBJECT (GestionU, button_AjouterU, "button_AjouterU");
-  GLADE_HOOKUP_OBJECT (GestionU, alignment6, "alignment6");
-  GLADE_HOOKUP_OBJECT (GestionU, hbox6, "hbox6");
-  GLADE_HOOKUP_OBJECT (GestionU, image6, "image6");
-  GLADE_HOOKUP_OBJECT (GestionU, label62, "label62");
   GLADE_HOOKUP_OBJECT (GestionU, affichageTree, "affichageTree");
   GLADE_HOOKUP_OBJECT (GestionU, button_SupprimerU, "button_SupprimerU");
   GLADE_HOOKUP_OBJECT (GestionU, alignment8, "alignment8");
@@ -537,6 +535,11 @@ create_GestionU (void)
   GLADE_HOOKUP_OBJECT (GestionU, hbox40, "hbox40");
   GLADE_HOOKUP_OBJECT (GestionU, image40, "image40");
   GLADE_HOOKUP_OBJECT (GestionU, label193, "label193");
+  GLADE_HOOKUP_OBJECT (GestionU, button_AjouterU, "button_AjouterU");
+  GLADE_HOOKUP_OBJECT (GestionU, alignment6, "alignment6");
+  GLADE_HOOKUP_OBJECT (GestionU, hbox6, "hbox6");
+  GLADE_HOOKUP_OBJECT (GestionU, image6, "image6");
+  GLADE_HOOKUP_OBJECT (GestionU, label62, "label62");
 
   return GestionU;
 }
@@ -3284,6 +3287,7 @@ create_ModifierU (void)
   GSList *Modifier_hommeU_group = NULL;
   GtkWidget *Modifier_femmeU;
   GtkWidget *Modifier_msg;
+  GtkWidget *button_retour;
 
   ModifierU = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (ModifierU), _("Modifier Utilisateur"));
@@ -3430,6 +3434,11 @@ create_ModifierU (void)
   gtk_fixed_put (GTK_FIXED (fixed24), Modifier_msg, 328, 280);
   gtk_widget_set_size_request (Modifier_msg, 256, 80);
 
+  button_retour = gtk_button_new_with_mnemonic (_("Retour"));
+  gtk_widget_show (button_retour);
+  gtk_fixed_put (GTK_FIXED (fixed24), button_retour, 16, 424);
+  gtk_widget_set_size_request (button_retour, 64, 32);
+
   g_signal_connect ((gpointer) ModiferUser, "clicked",
                     G_CALLBACK (on_ModiferUser_clicked),
                     NULL);
@@ -3441,6 +3450,9 @@ create_ModifierU (void)
                     NULL);
   g_signal_connect ((gpointer) Modifier_femmeU, "toggled",
                     G_CALLBACK (on_Modifier_femmeU_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) button_retour, "clicked",
+                    G_CALLBACK (on_button_retour_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -3471,6 +3483,7 @@ create_ModifierU (void)
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_hommeU, "Modifier_hommeU");
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_femmeU, "Modifier_femmeU");
   GLADE_HOOKUP_OBJECT (ModifierU, Modifier_msg, "Modifier_msg");
+  GLADE_HOOKUP_OBJECT (ModifierU, button_retour, "button_retour");
 
   return ModifierU;
 }

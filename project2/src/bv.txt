@@ -1,3 +1,0 @@
-63 98 2 ariana inactive 4 
-52 96 4 ariana active 2 
-69 69 69 ariana active 2 

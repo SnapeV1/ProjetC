@@ -1,0 +1,5 @@
+63 98 2 ariana inactive 4 
+52 96 4 ariana active 2 
+69 69 69 ariana active 2 
+11111111 1 12 bizerte inactive 2 
+12345678 123 2 tunis inactive 2 

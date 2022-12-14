@@ -1,9 +1,0 @@
-12345673 amine azfazf 1998 3 3 femme Admin 3 -1
-12345673 amine azfazf 1998 3 3 femme Admin 3 -1
-12345679 amine azfazf 2001 3 3 homme Electeur 3 -1
-12345670 amine azfazf 2000 3 3 homme Electeur 3 -1
-12345636 amine azfazf 2000 3 3 homme Electeur 3 4
-12345684 amine azfazf 2000 3 3 homme Electeur 3 0
-12345612 amine azfazf 2000 3 3 homme Electeur 3 0
-12345692 amine azfazf 2000 3 3 femme Electeur 3 0
-15478000 azazdz zdzdzd 2000 3 3 femme Electeur 23 -1

@@ -1,0 +1,7 @@
+12345673 amine hammeda 1998 3 3 homme Admin 3 -1
+15478000 azazdz zdzdzd 2000 3 3 femme Electeur 23 -1
+14417840 amine testing 1977 2 2 homme Electeur 12 -1
+14417740 ons zldzd 1977 2 2 femme Electeur 12 5
+14417820 yoser zldzd 1977 2 2 femme Electeur 12 5
+12369857 mazldzd zfzff 2000 2 2 homme Electeur 2 -1
+12306987 mzlzm adad 2000 1 2 femme Electeur 1 -1
